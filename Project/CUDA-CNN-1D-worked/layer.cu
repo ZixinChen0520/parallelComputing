@@ -1,6 +1,6 @@
 #include "layer.h"
 
-// Constructor
+// Constructor, extends from Layer class from .h, there you can see details
 Layer::Layer(int M, int N, int O)
 {
 	this->M = M;
@@ -81,6 +81,7 @@ __device__ float step_function(float v)
 	return 1 / (1 + exp(-v));//Sigmoid
 }
 
+// calculate step function, each thread in charge of one element
 __global__ void apply_step_function(float *input, float *output, const int N)
 {
 	const int pos = blockIdx.x * blockDim.x + threadIdx.x;
